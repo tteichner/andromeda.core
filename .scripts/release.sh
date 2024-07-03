@@ -79,16 +79,13 @@ if [[ -z "$status" ]] ; then
     tag=$(jq -r .version package.json)
 
     # Make sure the release tag is populated to child packages
-    for folder in "$wd"/*; do
-        conf_file="${folder}/package.json"
-        if [[ -f $conf_file ]] ; then
-          echo "Patch $conf_file"
-
-          jq ".version |= \"$tag\"" "$conf_file" > "$conf_file-new"
-          rm "$conf_file"
-          mv "$conf_file-new" "$conf_file"
-        fi
-    done
+    conf_file="composer.json"
+    if [[ -f $conf_file ]] ; then
+        echo "Patch $conf_file"
+        jq ".version |= \"$tag\"" "$conf_file" > "$conf_file-new"
+        rm "$conf_file"
+        mv "$conf_file-new" "$conf_file"
+    fi
     out=$(git status --porcelain)
     if [[ ! -z "${out}" ]] ; then
       git add .
