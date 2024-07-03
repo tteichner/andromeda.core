@@ -72,7 +72,11 @@ if [[ -z "$status" ]] ; then
 
     # Rewrite the commit message
     git add .
-    git commit --amend -m "$msg"
+    if [[ ${has} -eq 1 ]]; then
+      git commit --amend -m "$msg"
+    else
+      git commit -m "$msg"
+    fi
     tag=$(jq -r .version package.json)
 
     # Make sure the release tag is populated to child packages
