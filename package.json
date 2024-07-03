@@ -1,0 +1,17 @@
+{
+    "name": "andromeda.core",
+    "version": "1.1.0",
+    "license": "SEE LICENSE IN <LICENSE.txt>",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/tteichner/andromeda.core"
+    },
+    "scripts": {
+        "release": "bash .scripts/release.sh",
+        "prerelease": "chmod a+x .scripts/release.sh",
+        "release:major": "bash .scripts/release.sh --major",
+        "prerelease:major": "chmod a+x .scripts/release.sh",
+        "release:patch": "bash .scripts/release.sh --patch",
+        "prerelease:patch": "chmod a+x .scripts/release.sh"
+    }
+}
