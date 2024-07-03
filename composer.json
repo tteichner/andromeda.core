@@ -3,7 +3,7 @@
   "name": "softwarefactories/andromeda.core",
   "description": "Provide basic objects for orion swarms",
   "type": "library",
-  "license": "SEE LICENSE IN <LICENSE.txt>",
+  "license": "GPL-3.0-or-later",
   "autoload": {
     "psr-4": {
       "Softwarefactories\\AndromedaCore\\": "src/",
