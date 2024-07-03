@@ -19,9 +19,6 @@ git config rebase.autoStash true
 # pull all changes
 git pull
 
-# get workdir
-wd=$(pwd)
-
 # check for conflict
 status=$(git ls-files --unmerged)
 if [[ -z "$status" ]] ; then
