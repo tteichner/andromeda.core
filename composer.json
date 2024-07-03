@@ -1,0 +1,21 @@
+{
+    "name": "softwarefactories/andromeda.core",
+    "description": "Provide basic objects for orion swarms",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Softwarefactories\\AndromedaCore\\": "src/",
+            "SFAC\\": "src/"
+        },
+        "files": [
+            "src/constants.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Tobias Teichner",
+            "email": "webmaster@teichner.biz"
+        }
+    ],
+    "require": {}
+}
