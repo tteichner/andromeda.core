@@ -6,8 +6,7 @@
   "license": "GPL-3.0-or-later",
   "autoload": {
     "psr-4": {
-      "Softwarefactories\\AndromedaCore\\": "src/",
-      "SFAC\\": "src/"
+      "Softwarefactories\\AndromedaCore\\": "src/"
     },
     "files": [
       "src/constants.php"
