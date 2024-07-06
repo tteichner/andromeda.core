@@ -56,9 +56,9 @@ class HttpFunctions
      *
      * @param   $folder string      the path to delete
      * @param   $full   boolean     also remove the root folder
-     * @return  boolean The delete status
+     * @return  bool The delete status
      **/
-    public static function DropFolderRecurse($folder, $full = true)
+    public static function DropFolderRecurse(string $folder, bool $full = true): bool
     {
         if (!is_dir($folder)) {
             return false;
@@ -123,7 +123,7 @@ class HttpFunctions
      *
      * @return array|bool
      */
-    public static function GetHeaderAuth()
+    public static function GetHeaderAuth(): bool|array
     {
         $header = self::GetAllHeaders();
         if ($header['Authorization']) {
@@ -150,7 +150,7 @@ class HttpFunctions
      *
      * @return array
      */
-    public static function GetAllHeaders()
+    public static function GetAllHeaders(): array
     {
         if (!function_exists('getallheaders')) {
             $headers = [];
@@ -173,7 +173,7 @@ class HttpFunctions
      * @param   $outfile    string  optional output file of the call result
      * @return  bool        The result code
      **/
-    public static function CallExecutable($cmd, $folder, $outfile = '/var/log/php-fpm.log')
+    public static function CallExecutable(string $cmd, string $folder, string $outfile = '/var/log/php-fpm.log'): bool
     {
         // setup custom env vars
         $env = array('PATH' => '/usr/local/bin:/usr/bin:/bin', 'HOME' => '/var/www');
@@ -223,7 +223,7 @@ class HttpFunctions
      * @param   $parsed                 boolean     When set to true, return as parsed json payload
      * @return  object|array|null    The payload as string or a system result object
      **/
-    public static function GetBody($parsed = true)
+    public static function GetBody(bool $parsed = true): object|array|null
     {
         // parse only for PUT and POST requests
         if (strtoupper($_SERVER['REQUEST_METHOD']) !== 'OPTIONS' && strtoupper($_SERVER['REQUEST_METHOD']) !== 'GET') {
