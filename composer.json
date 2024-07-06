@@ -1,5 +1,5 @@
 {
-  "version": "1.6.3",
+  "version": "1.6.4",
   "name": "softwarefactories/andromeda.core",
   "description": "Provide basic objects for orion swarms",
   "type": "library",
@@ -18,5 +18,7 @@
       "email": "webmaster@teichner.biz"
     }
   ],
-  "require": {}
+  "require": {
+    "outcompute/phpinfo": "^1.1"
+  }
 }
