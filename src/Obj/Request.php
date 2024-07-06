@@ -35,7 +35,7 @@ class Request
     /**
      * Name of the handler function
      *
-     * @var null
+     * @var string
      */
     protected string $function;
 
@@ -65,32 +65,6 @@ class Request
         $this->map = $map;
         $this->method = $method;
         $this->uri = $uri;
-
-        // try to find matching handler
-        if ($this->map && is_array($this->map) && !empty($this->map)) {
-            foreach($this->map as $ep) {
-                if ($ep->method == $method) {
-                    if (preg_match($ep->regex, $uri)) {
-
-                        if (in_array($ep->handler, ['Base', 'Derivative', 'Asset', 'FileParser'])) {
-                            $this->function = $ep->function;
-                            $this->protected = $ep->protected;
-                            if ($ep->handler === 'Base') {
-                                $this->handler = new Base($this);
-                            } else if ($ep->handler === 'Derivative') {
-                                $this->handler = new Derivative($this);
-                            } else if ($ep->handler === 'Asset') {
-                                $this->handler = new Asset($this);
-                            } else if ($ep->handler === 'FileParser') {
-                                $this->handler = new FileParser($this);
-                            }
-                        } else {
-                            error_log('ERROR Class not found FAA\\Handler\\' . $ep->handler);
-                        }
-                    }
-                }
-            }
-        }
     }
 
     /**
@@ -106,10 +80,10 @@ class Request
     /**
      * The segment by index or, null
      *
-     * @param int $index        The segment index
-     * @return string[]|string
+     * @param int $index The segment index
+     * @return array|string|null
      */
-    public function Segment(int $index = -1)
+    public function Segment(int $index = -1): array|string|null
     {
         if ($index == -1) {
             return $this->segments;
@@ -120,9 +94,9 @@ class Request
     /**
      * The callback method name
      *
-     * @return null
+     * @return string
      */
-    public function CallBack()
+    public function CallBack(): string
     {
         return $this->function;
     }
@@ -130,28 +104,8 @@ class Request
     /**
      * @return IHandler|null
      */
-    public function Handler()
+    public function Handler(): ?IHandler
     {
         return $this->handler;
-    }
-
-    /**
-     * The host
-     *
-     * @return string|null
-     */
-    public function Host()
-    {
-        return (preg_match('/^[a-z\-]+$/', $this->Segment(2))) ? $this->Segment(2) : null;
-    }
-
-    /**
-     * The asset id
-     *
-     * @return string|null
-     */
-    public function Asset()
-    {
-        return (preg_match('/^[a-z0-9\-]+$/', $this->Segment(4))) ? $this->Segment(4) : null;
     }
 }
