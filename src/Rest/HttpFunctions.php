@@ -173,7 +173,7 @@ class HttpFunctions
      * @param   $outfile    string  optional output file of the call result
      * @return  bool        The result code
      **/
-    public static function CallExecutable(string $cmd, string $folder, string $outfile = '/var/log/php-fpm.log'): bool
+    public static function CallExecutable(string $cmd, string $folder = '/app', string $outfile = '/var/log/php-fpm.log'): bool
     {
         // setup custom env vars
         $env = array('PATH' => '/usr/local/bin:/usr/bin:/bin', 'HOME' => '/var/www');
