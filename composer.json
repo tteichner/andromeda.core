@@ -24,7 +24,6 @@
     "ext-json": "*",
     "ext-mbstring": "*",
     "ext-zip": "*",
-    "outcompute/phpinfo": "^1.1",
-    "softwarefactories/andromeda.core": "^1.3"
+    "outcompute/phpinfo": "^1.1"
   }
 }
