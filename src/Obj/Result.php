@@ -44,9 +44,9 @@ abstract class Result
     /**
      * secondary result values
      *
-     * @var null|mixed
+     * @var mixed
      */
-    private ?array $second_data = null;
+    private mixed $second_data = null;
 
     /**
      * The sort by property name

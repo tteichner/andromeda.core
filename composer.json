@@ -1,13 +1,12 @@
 {
-  "version": "1.6.0",
+  "version": "1.7.0",
   "name": "softwarefactories/andromeda.core",
   "description": "Provide basic objects for orion swarms",
   "type": "library",
   "license": "GPL-3.0-or-later",
   "autoload": {
     "psr-4": {
-      "Softwarefactories\\AndromedaCore\\": "src/",
-      "SFAC\\": "src/"
+      "Softwarefactories\\AndromedaCore\\": "src/"
     },
     "files": [
       "src/constants.php"
@@ -19,5 +18,13 @@
       "email": "webmaster@teichner.biz"
     }
   ],
-  "require": {}
+  "require": {
+    "php": ">=8.1",
+    "ext-curl": "*",
+    "ext-json": "*",
+    "ext-mbstring": "*",
+    "ext-zip": "*",
+    "outcompute/phpinfo": "^1.1",
+    "softwarefactories/andromeda.core": "^1.3"
+  }
 }
