@@ -19,6 +19,12 @@
     }
   ],
   "require": {
-    "outcompute/phpinfo": "^1.1"
+    "php": ">=8.1",
+    "ext-curl": "*",
+    "ext-json": "*",
+    "ext-mbstring": "*",
+    "ext-zip": "*",
+    "outcompute/phpinfo": "^1.1",
+    "softwarefactories/andromeda.core": "^1.3"
   }
 }
