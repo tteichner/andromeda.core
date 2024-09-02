@@ -1,5 +1,5 @@
 {
-  "version": "1.7.0",
+  "version": "1.7.1",
   "name": "softwarefactories/andromeda.core",
   "description": "Provide basic objects for orion swarms",
   "type": "library",
