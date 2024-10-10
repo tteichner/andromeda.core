@@ -4,15 +4,64 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "70ebee71cf9082bdaef70a8e775f09fb",
-    "packages": [],
+    "content-hash": "66f08fb661252bfae263d605368fc7c5",
+    "packages": [
+        {
+            "name": "outcompute/phpinfo",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/outcompute/PHPInfo.git",
+                "reference": "14cff7d8a1c323b66c736ee105efcf2a3130b122"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/outcompute/PHPInfo/zipball/14cff7d8a1c323b66c736ee105efcf2a3130b122",
+                "reference": "14cff7d8a1c323b66c736ee105efcf2a3130b122",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "OutCompute\\PHPInfo\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "outcompute",
+                    "email": "gkumarrahul@gmail.com"
+                }
+            ],
+            "description": "Get the output of phpinfo() as an array.",
+            "keywords": [
+                "array",
+                "php",
+                "phpinfo"
+            ],
+            "support": {
+                "issues": "https://github.com/outcompute/PHPInfo/issues",
+                "source": "https://github.com/outcompute/PHPInfo/tree/1.1.0"
+            },
+            "time": "2020-01-08T14:01:00+00:00"
+        }
+    ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": ">=8.1",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "ext-zip": "*"
+    },
     "platform-dev": [],
     "plugin-api-version": "2.3.0"
 }

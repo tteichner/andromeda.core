@@ -659,7 +659,7 @@ abstract class Result
                 }
 
                 // map data but only in encoded form
-                $text = str_replace($key, $allow_html ? $val : htmlentities($val, ENT_QUOTES, 'UTF-8', false), $text);
+                $text = str_replace($key, $allow_html ? $val : htmlentities(($val) ?: '', ENT_QUOTES, 'UTF-8', false), $text);
             }
         }
 
