@@ -168,23 +168,37 @@ class HttpFunctions
     /** Execute a system command
      * Uses installed executable to perform a system call
      *
-     * @param   $cmd        string  the command to execute
-     * @param   $folder     string  The working directory
-     * @param   $outfile    string  optional output file of the call result
+     * @param               $cmd        string  the command to execute
+     * @param string|array  $folder     string  The working directory
+     * @param               $outfile    string  optional output file of the call result
      * @return  bool        The result code
-     **/
-    public static function CallExecutable(string $cmd, string $folder = '/app', string $outfile = '/var/log/php-fpm.log'): bool
+     */
+    public static function CallExecutable(string $cmd, string|array $folder = '/app', string $outfile = '/var/log/php-fpm.log'): bool
     {
         // setup custom env vars
         $env = array('PATH' => '/usr/local/bin:/usr/bin:/bin', 'HOME' => '/var/www');
+        if (is_array($folder)) {
+            foreach ($folder as $k => $cfg) {
+                if ($k === 'wd') {
+                    $wd = $cfg;
+                } elseif ($k === 'of') {
+                    $of = $cfg;
+                } elseif ($k === 'env') {
+                    $env = array_merge($env, $cfg);
+                }
+            }
+        } else {
+            $wd = $folder;
+            $of = $outfile;
+        }
 
         // setup process
         $descriptors = array(
             0 => array('pipe', 'r'),
             1 => array('pipe', 'w'),
-            2 => array('file', $outfile, 'a')
+            2 => array('file', (isset($of)) ? $of : '/var/log/php-fpm.log', 'a')
         );
-        $process = proc_open($cmd, $descriptors, $pipes, $folder, $env);
+        $process = proc_open($cmd, $descriptors, $pipes, (isset($wd)) ? $wd : '/app', $env);
 
         // test if started
         if (is_resource($process)) {
