@@ -150,7 +150,7 @@ class Curl
      * @param string  $file_path  Absolute path to target file (must be writable)
      * @return  Result      A system result object
      */
-    public function Download(string $file_path): Result
+    public function Download(string $file_path, array|null $body = null): Result
     {
         $this->init();
         $fp = fopen($file_path, 'w+');
@@ -159,6 +159,19 @@ class Curl
         curl_setopt($this->ch, CURLOPT_TIMEOUT, 50);
         curl_setopt($this->ch, CURLOPT_FILE, $fp);
         curl_setopt($this->ch, CURLOPT_FOLLOWLOCATION, true);
+
+        if ($body) {
+            if ($res = json_encode($body, JSON_UNESCAPED_SLASHES)) {
+                $this->body = $res;
+                $this->header = array(
+                    'Content-Type: application/json',
+                    'Content-Length: ' . strlen($this->body)
+                );
+                curl_setopt($this->ch, CURLOPT_CUSTOMREQUEST, $this->method);
+                curl_setopt($this->ch, CURLOPT_HTTPHEADER, $this->header);
+                curl_setopt($this->ch, CURLOPT_POSTFIELDS, $this->body);
+            }
+        }
 
         $res = $this->exec();
         fclose($fp);
