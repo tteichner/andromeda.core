@@ -94,7 +94,7 @@ abstract class Result
      * @param ?array       $var An associative array with variable parameters to parse into the translation
      * @return Result
      */
-    public function SetErrorMessage(string|array $msg, array $var = null): Result
+    public function SetErrorMessage(string|array $msg, ?array $var = null): Result
     {
         $this->setStatus(false);
         $this->setMessage($msg, $var);
@@ -115,7 +115,7 @@ abstract class Result
      * @param string|array $msg The new message
      * @param ?array       $var An associative array with variable parameters to parse into the translation
      **/
-    public function setMessage(string|array $msg, array $var = null): Result
+    public function setMessage(string|array $msg, ?array $var = null): Result
     {
         // only if a message was given write it into the buffer
         if ($msg) {
@@ -185,15 +185,16 @@ abstract class Result
     }
 
     /**
-     * Set new error
+     * Set error
      *
-     * Can set an array of errors or a assoc error entry
+     * Can set an array of errors or an assoc error entry
      *
-     * @param string|array $key The key of the message
-     * @param string       $val The Value of the message
-     * @param ?array       $var An associative array with variable parameters to parse into the translation
-     **/
-    public function setError($key, $val = '', $var = null)
+     * @param array|string      $key    The key of the message
+     * @param array|string|null $val    The Value of the message
+     * @param array|bool|null   $var    An associative array with variable parameters to parse into the translation
+     * @return Result
+     */
+    public function setError(array|string $key, array|string|null $val = '', array|bool|null $var = null): static
     {
         if ($val === null) {
             if ($this->errors && isset($this->errors[$key])) {
@@ -232,6 +233,7 @@ abstract class Result
                 }
             }
         }
+        return $this;
     }
 
     /** state count errors
